@@ -5,6 +5,9 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
+const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light ); //This is the light so that we can SEE the 3D model.
+
 // Example -- this creates a cube that can be worked with
 // const geometry = new THREE.BoxGeometry();
 // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
@@ -13,7 +16,10 @@ document.body.appendChild( renderer.domElement );
 
 camera.position.z = 5; // How close or far the camera is
 
-const loader = new GLTFLoader(); //To load 3D model   three js github examples/js/loaders/GLTFLoader.js click on raw button click Cntrl +S
+const loader = new THREE.GLTFLoader(); //To load 3D model   three js github examples/js/loaders/GLTFLoader.js click on raw button click Cntrl +S
+loader.load("../models/scene.gltf", function(gltf) {
+    scene.add(gltf.scene);
+}) //cannot see anything at this point because...we have NO LIGHT
 
 // renderer.render(scene, camera ); *Manually rendering each time is a pain so here is an alternative... by passing animate it continually renders over and over again forever
 function animate() {
