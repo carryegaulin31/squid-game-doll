@@ -5,7 +5,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+const light = new THREE.AmbientLight( 0xffffff ); // soft white light is this (0x404040) we will change to white
 scene.add( light ); //This is the light so that we can SEE the 3D model.
 
 // Example -- this creates a cube that can be worked with
@@ -19,6 +19,8 @@ camera.position.z = 5; // How close or far the camera is
 const loader = new THREE.GLTFLoader(); //To load 3D model   three js github examples/js/loaders/GLTFLoader.js click on raw button click Cntrl +S
 loader.load("../models/scene.gltf", function(gltf) {
     scene.add(gltf.scene);
+    //now the doll is too big so we will scale it down.
+    gltf.scene.scale.set(.4, .4, .4) // corrct size but not screen responsive...
 }) //cannot see anything at this point because...we have NO LIGHT
 
 // renderer.render(scene, camera ); *Manually rendering each time is a pain so here is an alternative... by passing animate it continually renders over and over again forever
