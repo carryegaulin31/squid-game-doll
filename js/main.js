@@ -34,3 +34,12 @@ function animate() {
 	requestAnimationFrame( animate );
 }
 animate();
+
+window.addEventListener('resize', onWindowResize, false);
+
+function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    }
