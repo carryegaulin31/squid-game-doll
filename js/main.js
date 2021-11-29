@@ -71,30 +71,33 @@ createTrack();
 
 class Player {
   constructor() {
-    const geometry = new THREE.SphereGeometry(.3, 32, 16);
+    const geometry = new THREE.SphereGeometry(0.3, 32, 16);
     const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const sphere = new THREE.Mesh(geometry, material);
-    sphere.position.z = 1
-    sphere.position.x = start_position
+    sphere.position.z = 1;
+    sphere.position.x = start_position;
     scene.add(sphere);
-    this.player = sphere
+    this.player = sphere;
     this.playerInfo = {
-        positionX: start_position,
-        velocity: 0
-        }
+      positionX: start_position,
+      velocity: 0,
+    };
   }
-  
+
   run() {
-    this.playerInfo.velocity = .03
+    this.playerInfo.velocity = 0.03;
   }
-  
+
+  stop() {
+    this.playerInfo.velocity = 0;
+  }
   update() {
-    this.playerInfo.positionX -= this.playerInfo.velocity
-    this.player.position.x = this.playerInfo.positionX
+    this.playerInfo.positionX -= this.playerInfo.velocity;
+    this.player.position.x = this.playerInfo.positionX;
   }
 }
 
-const player = new Player()
+const player = new Player();
 
 let doll = new Doll();
 setTimeout(() => {
@@ -110,7 +113,7 @@ function animate() {
   // .5 faster, .00001 slower
 
   requestAnimationFrame(animate);
-  player.update()
+  player.update();
 }
 animate();
 
@@ -122,8 +125,13 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('keydown', (e) => {
-    if(e.key == "ArrowUp") {
-        player.run()
-        }
-    })
+window.addEventListener("keydown", (e) => {
+  if (e.key == "ArrowUp") {
+    player.run();
+  }
+});
+window.addEventListener("keyup", (e) => {
+  if (e.key == "ArrowDown") {
+    player.stop();
+  }
+});
