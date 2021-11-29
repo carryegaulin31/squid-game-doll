@@ -36,7 +36,7 @@ camera.position.z = 5; // How close or far the camera is
 const loader = new THREE.GLTFLoader(); //To load 3D model   three js github examples/js/loaders/GLTFLoader.js click on raw button click Cntrl +S
 
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 class Doll {
   constructor() {
@@ -58,9 +58,13 @@ class Doll {
     // this.doll.rotation.y = 0
     gsap.to(this.doll.rotation, { y: 0, duration: 0.45 });
   }
-  
-  start() {
-  this.lookBackward()
+
+  async start() { // Async recursive function
+    this.lookBackward();
+    await delay(1000);
+    this.lookForward();
+    await delay(1000);
+    this.start();
   }
 }
 
@@ -97,7 +101,7 @@ class Player {
 
   stop() {
     // this.playerInfo.velocity = 0; This is an immediate stop
-    gsap.to(this.playerInfo, {velocity: 0, duration: .1}) // a more gradual stop the higher the number the slower the stop
+    gsap.to(this.playerInfo, { velocity: 0, duration: 0.1 }); // a more gradual stop the higher the number the slower the stop
   }
   update() {
     this.playerInfo.positionX -= this.playerInfo.velocity;
