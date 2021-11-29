@@ -20,7 +20,7 @@ const start_position = 3;
 const end_position = -start_position; // This dictates where the cube will be on the left and the right of screen
 const text = document.querySelector(".text")
 const TIME_LIMIT = 10
-
+const gameStat = "loading"
 
 function createCube(size, positionX, rotY = 0, color = 0xfbc851) {
   //positionX is start and end position, rotY is rotation of cube
@@ -47,7 +47,7 @@ class Doll {
       scene.add(gltf.scene);
       //now the doll is too big so we will scale it down.
       gltf.scene.scale.set(0.4, 0.4, 0.4); // correct size but not screen responsive...
-      gltf.scene.position.set(0, -1, 0);
+      gltf.scene.position.set(0, -1.5, 0);
       this.doll = gltf.scene;
     }); //cannot see anything at this point because...we have NO LIGHT
   }
@@ -159,6 +159,7 @@ function onWindowResize() {
 }
 
 window.addEventListener("keydown", (e) => {
+    if(gameStat !== "started") return
   if (e.key == "ArrowUp") {
     player.run();
   }
