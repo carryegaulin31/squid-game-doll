@@ -126,11 +126,11 @@ async function init() {
   startGame()
 }
 
+function startGame() {
+let progressBar = createCube({w: 8, h: .1, d: 1}, 0)
+    doll.start()
+}
 init()
-
-setTimeout(() => {
-  doll.start();
-}, 1000);
 
 // renderer.render(scene, camera ); *Manually rendering each time is a pain so here is an alternative... by passing animate it continually renders over and over again forever
 function animate() {
