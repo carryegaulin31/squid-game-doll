@@ -15,11 +15,15 @@ renderer.setClearColor(0xb7c3f3, 1); //Background color, opacity
 const light = new THREE.AmbientLight(0xffffff); // soft white light is this (0x404040) we will change to white
 scene.add(light); //This is the light so that we can SEE the 3D model.
 
+
+function createCube(size) {
 // Example -- this creates a cube that can be worked with
-// const geometry = new THREE.BoxGeometry();
-// const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-// const cube = new THREE.Mesh( geometry, material );
-// scene.add( cube );
+const geometry = new THREE.BoxGeometry(size.w, size.h, size.d);
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+}
 
 camera.position.z = 5; // How close or far the camera is
 
@@ -48,7 +52,12 @@ class Doll {
   }
 }
 
-let doll = new Doll();
+function createTrack() {
+    createCube({w: .2, h: 1.5, d: 1})
+}
+createTrack()
+
+// let doll = new Doll();
 setTimeout(() => {
   doll.lookBackward()
 }, 1000);
