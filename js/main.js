@@ -85,11 +85,12 @@ class Player {
   }
   
   run() {
-  
+    this.playerInfo.velocity = .03
   }
   
   update() {
-  
+    this.playerInfo.positionX -= this.playerInfo.velocity
+    this.player.position.x = this.playerInfo.positionX
   }
 }
 
@@ -109,6 +110,7 @@ function animate() {
   // .5 faster, .00001 slower
 
   requestAnimationFrame(animate);
+  player.update()
 }
 animate();
 
