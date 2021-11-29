@@ -121,3 +121,9 @@ function onWindowResize() {
   camera.updateProjectMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
+window.addEventListener('keydown', (e) => {
+    if(e.key == "ArrowUp") {
+        player.run()
+        }
+    })
