@@ -27,6 +27,7 @@ const cube = new THREE.Mesh( geometry, material );
 cube.position.x = positionX
 cube.rotation.y = rotY
 scene.add( cube );
+return cube
 
 }
 
@@ -58,14 +59,14 @@ class Doll {
 }
 
 function createTrack() {
+    createCube({w: start_position * 2 + .2, h: 1.5, d: 1}, 0, 0, 0xe5a716).position.z = -1 // middle cube on track
     createCube({w: .2, h: 1.5, d: 1}, start_position, -.35) // the -3 dictates what side of the screen the cube will be on. Replaced with start position and end position
     createCube({w: .2, h: 1.5, d: 1}, end_position, .35)
-    createCube({w: start_position * 2, h: 1.5, d: 1}, 0, 0) // middle cube on track
     
 }
 createTrack()
 
-// let doll = new Doll();
+let doll = new Doll();
 setTimeout(() => {
   doll.lookBackward()
 }, 1000);
