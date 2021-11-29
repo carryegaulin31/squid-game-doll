@@ -37,11 +37,14 @@ class Doll {
   }
 
   lookBackward() {
-    this.doll.rotation.y = -3.15 // 1 turns the doll 1 to the right, -3.15 tuens the doll backward
+    // this.doll.rotation.y = -3.15 // 1 turns the doll 1 to the right, -3.15 tuens the doll backward before we have animation
+    gsap.to(this.doll.rotation, {y: -3.15, duration: .45})
   }
   
   lookForward() {
-    this.doll.rotation.y = 0
+    // this.doll.rotation.y = 0
+    gsap.to(this.doll.rotation, {y: 0, duration: .45})
+
   }
 }
 
