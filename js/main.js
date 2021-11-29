@@ -18,7 +18,7 @@ scene.add(light); //This is the light so that we can SEE the 3D model.
 // GLOBAL VARIABLES
 const start_position = 3;
 const end_position = -start_position; // This dictates where the cube will be on the left and the right of screen
-
+const text = document.querySelector(".text")
 function createCube(size, positionX, rotY = 0, color = 0xfbc851) {
   //positionX is start and end position, rotY is rotation of cube
   // Example -- this creates a cube that can be worked with
@@ -59,11 +59,12 @@ class Doll {
     gsap.to(this.doll.rotation, { y: 0, duration: 0.45 });
   }
 
-  async start() { // Async recursive function
+  async start() {
+    // Async recursive function
     this.lookBackward();
-    await delay(1000);
+    await delay(Math.random() * 1000 + 1000);
     this.lookForward();
-    await delay(1000);
+    await delay(Math.random() * 750 + 750);
     this.start();
   }
 }
@@ -112,8 +113,13 @@ class Player {
 const player = new Player();
 
 let doll = new Doll();
+
+async function init() {
+  await delay(500);
+}
+
 setTimeout(() => {
-  doll.lookBackward();
+  doll.start();
 }, 1000);
 
 // renderer.render(scene, camera ); *Manually rendering each time is a pain so here is an alternative... by passing animate it continually renders over and over again forever
