@@ -89,7 +89,8 @@ class Player {
   }
 
   stop() {
-    this.playerInfo.velocity = 0;
+    // this.playerInfo.velocity = 0; This is an immediate stop
+    gsap.to(this.playerInfo, {velocity: 0, duration: .1}) // a more gradual stop the higher the number the slower the stop
   }
   update() {
     this.playerInfo.positionX -= this.playerInfo.velocity;
