@@ -56,13 +56,13 @@ class Doll {
   lookBackward() {
     // this.doll.rotation.y = -3.15 // 1 turns the doll 1 to the right, -3.15 tuens the doll backward before we have animation
     gsap.to(this.doll.rotation, { y: -3.15, duration: 0.45 });
-    setTimeout(() => isLookingBackward = true, 450)
+    setTimeout(() => isLookingBackward = true, 150)
   }
 
   lookForward() {
     // this.doll.rotation.y = 0
     gsap.to(this.doll.rotation, { y: 0, duration: 0.45 });
-    setTimeout(() => isLookingBackward = false, 150)
+    setTimeout(() => isLookingBackward = false, 450)
 
   }
 
@@ -113,9 +113,15 @@ class Player {
   }
   
   check() {
-  
-  }
-  
+     if(this.playerInfo.velocity > 0 && !isLookingBackward){ 
+       alert("Bang! Bang! You're dead")
+       gameStat = "over"
+     }
+    if(this.playerInfo.positionX < end_position + .4) {
+        alert("Hey look ma I made it!!")
+        gameStat = "over"
+        }
+    }
   update() {
     this.check()
     this.playerInfo.positionX -= this.playerInfo.velocity;
