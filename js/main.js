@@ -35,6 +35,9 @@ camera.position.z = 5; // How close or far the camera is
 
 const loader = new THREE.GLTFLoader(); //To load 3D model   three js github examples/js/loaders/GLTFLoader.js click on raw button click Cntrl +S
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
 class Doll {
   constructor() {
     loader.load("../models/scene.gltf", (gltf) => {
@@ -54,6 +57,10 @@ class Doll {
   lookForward() {
     // this.doll.rotation.y = 0
     gsap.to(this.doll.rotation, { y: 0, duration: 0.45 });
+  }
+  
+  start() {
+  this.lookBackward()
   }
 }
 
