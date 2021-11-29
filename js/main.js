@@ -19,6 +19,9 @@ scene.add(light); //This is the light so that we can SEE the 3D model.
 const start_position = 3;
 const end_position = -start_position; // This dictates where the cube will be on the left and the right of screen
 const text = document.querySelector(".text")
+const TIME_LIMIT = 10
+
+
 function createCube(size, positionX, rotY = 0, color = 0xfbc851) {
   //positionX is start and end position, rotY is rotation of cube
   // Example -- this creates a cube that can be worked with
@@ -127,7 +130,9 @@ async function init() {
 }
 
 function startGame() {
-let progressBar = createCube({w: 8, h: .1, d: 1}, 0)
+    let progressBar = createCube({w: 5, h: .1, d: 1}, 0)
+    progressBar.position.y = 3.35
+    gsap.to(progressBar.scale, {x: 0, duration: TIME_LIMIT, ease: "none"})
     doll.start()
 }
 init()
