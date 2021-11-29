@@ -116,7 +116,17 @@ let doll = new Doll();
 
 async function init() {
   await delay(500);
+  text.innerText = "Starting in 3"
+  await delay(500);
+  text.innerText = "Starting in 2"
+  await delay(500);
+  text.innerText = "Starting in 1"
+  await delay(500);
+  text.innerText = "GO!!!!"
+  startGame()
 }
+
+init()
 
 setTimeout(() => {
   doll.start();
