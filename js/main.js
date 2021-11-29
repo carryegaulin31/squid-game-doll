@@ -20,7 +20,8 @@ const start_position = 3;
 const end_position = -start_position; // This dictates where the cube will be on the left and the right of screen
 const text = document.querySelector(".text")
 const TIME_LIMIT = 10
-const gameStat = "loading"
+let gameStat = "loading"
+let isLookingBackward = true
 
 function createCube(size, positionX, rotY = 0, color = 0xfbc851) {
   //positionX is start and end position, rotY is rotation of cube
@@ -55,11 +56,14 @@ class Doll {
   lookBackward() {
     // this.doll.rotation.y = -3.15 // 1 turns the doll 1 to the right, -3.15 tuens the doll backward before we have animation
     gsap.to(this.doll.rotation, { y: -3.15, duration: 0.45 });
+    setTimeout(() => isLookingBackward = true, 450)
   }
 
   lookForward() {
     // this.doll.rotation.y = 0
     gsap.to(this.doll.rotation, { y: 0, duration: 0.45 });
+    setTimeout(() => isLookingBackward = false, 150)
+
   }
 
   async start() {
@@ -107,7 +111,13 @@ class Player {
     // this.playerInfo.velocity = 0; This is an immediate stop
     gsap.to(this.playerInfo, { velocity: 0, duration: 0.1 }); // a more gradual stop the higher the number the slower the stop
   }
+  
+  check() {
+  
+  }
+  
   update() {
+    this.check()
     this.playerInfo.positionX -= this.playerInfo.velocity;
     this.player.position.x = this.playerInfo.positionX;
   }
@@ -130,6 +140,7 @@ async function init() {
 }
 
 function startGame() {
+gameStat = "started"
     let progressBar = createCube({w: 5, h: .1, d: 1}, 0)
     progressBar.position.y = 3.35
     gsap.to(progressBar.scale, {x: 0, duration: TIME_LIMIT, ease: "none"})
@@ -160,7 +171,7 @@ function onWindowResize() {
 
 window.addEventListener("keydown", (e) => {
     if(gameStat !== "started") return
-  if (e.key == "ArrowUp") {
+    if (e.key == "ArrowUp") {
     player.run();
   }
 });
