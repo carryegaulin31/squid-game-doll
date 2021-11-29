@@ -114,11 +114,11 @@ class Player {
   
   check() {
      if(this.playerInfo.velocity > 0 && !isLookingBackward){ 
-       alert("Bang! Bang! You're dead")
+       text.innerText = "Bang! Bang! You're dead"
        gameStat = "over"
      }
     if(this.playerInfo.positionX < end_position + .4) {
-        alert("Hey look ma I made it!!")
+        text.innerText = "Hey look ma I made it!!"
         gameStat = "over"
         }
     }
@@ -146,16 +146,24 @@ async function init() {
 }
 
 function startGame() {
-gameStat = "started"
+    gameStat = "started"
     let progressBar = createCube({w: 5, h: .1, d: 1}, 0)
     progressBar.position.y = 3.35
     gsap.to(progressBar.scale, {x: 0, duration: TIME_LIMIT, ease: "none"})
     doll.start()
+    setTimeout(() => {
+        if(gameStat != "over") {
+            text.innerText = "Sucks to suck slow poke"
+            gameStat = "over"
+            }
+    }, TIME_LIMIT *1000)
 }
+
 init()
 
 // renderer.render(scene, camera ); *Manually rendering each time is a pain so here is an alternative... by passing animate it continually renders over and over again forever
 function animate() {
+    if(gameStat == "over") return
   renderer.render(scene, camera);
 
   // example animations
