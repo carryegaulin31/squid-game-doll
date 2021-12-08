@@ -118,7 +118,7 @@ class Player {
        gameStat = "over"
      }
     if(this.playerInfo.positionX < end_position + .4) {
-        text.innerText = "Hey look ma I made it!!"
+        text.innerText = "🎵Hey look ma I made it🎵"
         gameStat = "over"
         }
     }
@@ -153,7 +153,7 @@ function startGame() {
     doll.start()
     setTimeout(() => {
         if(gameStat != "over") {
-            text.innerText = "Sucks to suck slow poke"
+            text.innerText = "Sucks to suck slow poke🐌🐢"
             gameStat = "over"
             }
     }, TIME_LIMIT *1000)
