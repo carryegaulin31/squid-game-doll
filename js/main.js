@@ -141,7 +141,7 @@ async function init() {
   await delay(500);
   text.innerText = "Starting in 1"
   await delay(500);
-  text.innerText = "GO!!!!"
+  text.innerText = "Run For Your Life 😰"
   startGame()
 }
 
@@ -153,7 +153,7 @@ function startGame() {
     doll.start()
     setTimeout(() => {
         if(gameStat != "over") {
-            text.innerText = "Sucks to suck slow poke🐌🐢"
+            text.innerText = "Sucks To Suck Slow Poke🐌🐢"
             gameStat = "over"
             }
     }, TIME_LIMIT *1000)
