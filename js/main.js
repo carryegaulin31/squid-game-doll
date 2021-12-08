@@ -114,7 +114,7 @@ class Player {
   
   check() {
      if(this.playerInfo.velocity > 0 && !isLookingBackward){ 
-       text.innerText = "You lose!"
+       text.innerText = "Uh oh! U+1F4A5"
        gameStat = "over"
      }
     if(this.playerInfo.positionX < end_position + .4) {
